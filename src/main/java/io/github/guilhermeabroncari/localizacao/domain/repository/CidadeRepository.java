@@ -1,6 +1,9 @@
 package io.github.guilhermeabroncari.localizacao.domain.repository;
 
 import io.github.guilhermeabroncari.localizacao.domain.entity.Cidade;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -11,7 +14,9 @@ public interface CidadeRepository extends JpaRepository<Cidade, Long> {
     List<Cidade> findByNome(String nome);
     //buscar pelo nome usando metodo like.
     @Query(" SELECT C FROM Cidade C WHERE UPPER(C.nome) LIKE UPPER(?1) ")
-    List<Cidade> findByNomeLike(String nome);
+    List<Cidade> findByNomeLike(String nome, Sort sort);
+    @Query(" SELECT C FROM Cidade C WHERE UPPER(C.nome) LIKE UPPER(?1) ")
+    Page<Cidade> findByNomeLike(String nome, Pageable pageable);
     //busca começando por letra.
     List<Cidade> findByNomeStartingWith(String nome);
     //busca terminando por letra.
