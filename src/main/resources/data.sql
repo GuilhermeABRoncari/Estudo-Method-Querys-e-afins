@@ -1,0 +1,22 @@
+CREATE TABLE TB_CIDADE (
+        ID_CIDADE BIGINT NOT NULL PRIMARY KEY,
+        NOME VARCHAR(50) NOT NULL,
+        QTD_HABITANTES BIGINT
+);
+INSERT INTO TB_CIDADE
+        (ID_CIDADE, NOME, QTD_HABITANTES)
+        VALUES
+        (1, 'SÃO PAULO', 12396372),
+        (2, 'RIO DE JANEIRO', 10363514),
+        (3, 'BELO HORIZONTE', 8001234),
+        (4, 'FORTALEZA', 7951250),
+        (5, 'SALVADOR', 4015489),
+        (6, 'PALMAS', 5148796),
+        (7, 'RECIFE', 2014567),
+        (8, 'NATAL', 1987654),
+        (9, 'BRASILIA', 3145698),
+        (10, 'PORTO VELHO', 4001201),
+        (11, 'PORTO ALEGRE', 6003200),
+        (12, 'VITORIA', NULL),
+        (13, 'CURITUBA', NULL)
+;
