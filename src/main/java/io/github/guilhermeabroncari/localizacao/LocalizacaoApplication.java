@@ -23,10 +23,13 @@ public class LocalizacaoApplication implements CommandLineRunner {
 //        cidadeService.listarCidadesByNomeContaining("PORTO");
 //        cidadeService.listarCidadesByNomeStartingWith("N");
 //        cidadeService.listarCidadesByNomeEndingWith("R");
-        cidadeService.listarCidadesByNomeLike("a"); // <-- Pageble & Sort(por habitantes) aplicados.
+//        cidadeService.listarCidadesByNomeLike("a"); // <-- Pageble & Sort(por habitantes) aplicados.
 //        cidadeService.listarCidadesByHabitantesLessThan(5000000L);
 //        cidadeService.listarCidadesByHabitantesGreaterThan(5000000L);
 //        cidadeService.listarCidadesByHabitantesGreaterThanAndNomeLike(5000000L, "bel");
+
+        Cidade cidade = new Cidade(null, "porto", null);
+        cidadeService.filtroDinamico(cidade).forEach(System.out::println);
     }
 
 

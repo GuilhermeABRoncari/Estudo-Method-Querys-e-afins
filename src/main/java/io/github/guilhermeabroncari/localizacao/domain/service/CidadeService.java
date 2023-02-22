@@ -2,12 +2,11 @@ package io.github.guilhermeabroncari.localizacao.domain.service;
 
 import io.github.guilhermeabroncari.localizacao.domain.entity.Cidade;
 import io.github.guilhermeabroncari.localizacao.domain.repository.CidadeRepository;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class CidadeService {
@@ -62,4 +61,15 @@ public class CidadeService {
     public void listarCidadesByHabitantesGreaterThanAndNomeLike(Long qtd, String nome){
         cidadeRepository.findByHabitantesGreaterThanAndNomeLike(qtd, "%"+nome.toUpperCase()+"%").forEach(System.out::println);
     }
+    public List<Cidade> filtroDinamico(Cidade cidade){
+
+        ExampleMatcher matcher = ExampleMatcher
+                .matching()
+                .withIgnoreCase()
+                .withStringMatcher(ExampleMatcher.StringMatcher.STARTING);
+
+        Example<Cidade> example = Example.of(cidade, matcher);
+        return cidadeRepository.findAll(example);
+    }
+
 }
