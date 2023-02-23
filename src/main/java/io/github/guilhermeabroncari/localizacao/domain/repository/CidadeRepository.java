@@ -1,16 +1,22 @@
 package io.github.guilhermeabroncari.localizacao.domain.repository;
 
 import io.github.guilhermeabroncari.localizacao.domain.entity.Cidade;
+import io.github.guilhermeabroncari.localizacao.domain.repository.projections.CidadeProjections;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
 public interface CidadeRepository extends JpaRepository<Cidade, Long>, JpaSpecificationExecutor<Cidade> {
+    @Query(nativeQuery = true, value = " SELECT * FROM TB_CIDADE AS C WHERE C.NOME = :NOME ")
+    List<Cidade> findByNomeSqlNativo(@Param("NOME") String nome);
+    @Query(nativeQuery = true, value = " SELECT C.ID_CIDADE AS ID, C.NOME FROM TB_CIDADE AS C WHERE C.NOME = :NOME ")
+    List<CidadeProjections> findByNomeSqlNativoProjection(@Param("NOME") String nome);
     //busca pelo nome completo.
     List<Cidade> findByNome(String nome);
     //buscar pelo nome usando metodo like.

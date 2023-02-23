@@ -33,6 +33,15 @@ public class CidadeService {
     public void listarCidadesByNome(String nome) {
         cidadeRepository.findByNome(nome).forEach(System.out::println);
     }
+    public void listarCidadesByNomeSql(String nome) {
+        cidadeRepository.findByNomeSqlNativo(nome).forEach(System.out::println);
+    }
+    public void listarCidadesByNomeSqlProjection(String nome) {
+        cidadeRepository
+                .findByNomeSqlNativo(nome)
+                .stream().map(cidadeProjection -> new Cidade(cidadeProjection.getId(), cidadeProjection.getNome(), null))
+                .forEach(System.out::println);
+    }
 
     public void listarCidadesByHabitantes(Long qtd) {
         cidadeRepository.findByHabitantes(qtd).forEach(System.out::println);

@@ -29,8 +29,12 @@ public class LocalizacaoApplication implements CommandLineRunner {
 //        cidadeService.listarCidadesByHabitantesGreaterThanAndNomeLike(5000000L, "bel");
         //usando Specification Methods
 //        cidadeService.listarCidadesByNomeSpec("SALVADOR");
-        var cidade = new Cidade(1L, null, null);
-        cidadeService.listarCidadesSpecsFiltroDinamico(cidade);
+//        var cidade = new Cidade(1L, null, null);
+//        cidadeService.listarCidadesSpecsFiltroDinamico(cidade);
+        //metodo com SQL nativo.
+//        cidadeService.listarCidadesByNomeSql("NATAL");
+        //SQL nativo + Projections interface
+        cidadeService.listarCidadesByNomeSqlProjection("BELO HORIZONTE");
 
     }
 
