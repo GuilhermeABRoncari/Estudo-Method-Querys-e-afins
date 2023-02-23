@@ -27,9 +27,11 @@ public class LocalizacaoApplication implements CommandLineRunner {
 //        cidadeService.listarCidadesByHabitantesLessThan(5000000L);
 //        cidadeService.listarCidadesByHabitantesGreaterThan(5000000L);
 //        cidadeService.listarCidadesByHabitantesGreaterThanAndNomeLike(5000000L, "bel");
+        //usando Specification Methods
+//        cidadeService.listarCidadesByNomeSpec("SALVADOR");
+        var cidade = new Cidade(1L, null, null);
+        cidadeService.listarCidadesSpecsFiltroDinamico(cidade);
 
-        Cidade cidade = new Cidade(null, "porto", null);
-        cidadeService.filtroDinamico(cidade).forEach(System.out::println);
     }
 
 
